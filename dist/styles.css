@@ -21,3 +21,11 @@ ul {
 .navbar-inactive {
     background-color: #708090;
 }
+
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
+}

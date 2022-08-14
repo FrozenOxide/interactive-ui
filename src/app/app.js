@@ -2,22 +2,19 @@ import React, {useState} from 'react';
 import Navbar from './components/navbar.js';
 
 function App(props) {
-  const [tab, setTab] = useState({
-    experiments: 'navbar-active',
-    calendar: 'navbar-inactive',
-    mimic: 'navbar-inactive',
-    settings: 'navbar-inactive',
-    designer: 'navbar-inactive'
+  const [currTab, setCurrTab] = useState('experiments');
+
+  const [col, setCol] = useState({
+    col: true,
   })
-    
   
   function setParentTab(newTab) {
-    setTab(newTab);
+    setCurrTab(newTab);
   }
-    
+  
   return (
     <div className='content'>
-      <Navbar tab={tab} setParentState={setParentTab}/>
+      <Navbar currTab={currTab} setParentState={setParentTab}/>
     </div>
   );
 }
