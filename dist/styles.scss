@@ -8,6 +8,8 @@ body {
     margin: 0;
 }
 
+
+
 // NAVBAR
 ul {
     list-style: none;
@@ -36,5 +38,35 @@ ul {
 
     .navbar-inactive {
         background-color: #708090;
+    }
+}
+
+//EXPERIMENTS VIEW
+
+.add-exp-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    width: 15vw;
+
+    .add-exp {
+        height: 30px;
+        width: 30px;
+        border-radius: 4px;
+        &:hover {
+            background-color: #A9A9A9;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        max-width: 15vw;
+        margin:0;
     }
 }

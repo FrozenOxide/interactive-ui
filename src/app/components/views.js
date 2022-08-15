@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Experiments from './experiments.js';
 
 const ExperimentsView = function(props) {
-  return (<div>EXPERIMENTS</div>);
+  return (<Experiments/>);
 }
 
 const CalendarView = function(props) {

@@ -35,4 +35,29 @@ ul {
 }
 .navbar .navbar-inactive {
   background-color: #708090;
+}
+
+.add-exp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  width: 15vw;
+}
+.add-exp-container .add-exp {
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+}
+.add-exp-container .add-exp:hover {
+  background-color: #A9A9A9;
+}
+.add-exp-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-exp-container input {
+  max-width: 15vw;
+  margin: 0;
 }/*# sourceMappingURL=styles.css.map */
