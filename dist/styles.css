@@ -1,63 +1,123 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-* {
-  border: 1px solid red;
-}
-
-body {
-  margin: 0;
-}
-
-ul {
+.navbar {
   list-style: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-
-.navbar {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: flex-start;
-  padding: 0;
+  padding: 1em 0;
+  margin: 0;
+  font-size: 1.3em;
 }
 .navbar li {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 3vw;
-  margin: 0;
-  padding: 0 2vw;
+  padding: 0 1em;
+  border: 2px solid black;
   border-radius: 10% 10% 0% 0%/10% 46% 10% 10%;
   text-align: center;
+  flex: 1;
+  flex-wrap: wrap;
 }
 .navbar .navbar-active {
   background-color: white;
 }
 .navbar .navbar-inactive {
-  background-color: #708090;
+  background-color: #D3D3D3;
+}
+.navbar .navbar-inactive:hover {
+  background-color: white;
+}
+
+html,
+body,
+#root,
+.content {
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+.exp-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .add-exp-container {
+  flex: 1 1 20vw;
+  min-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2vh;
-  width: 15vw;
+  font-size: 1.2em;
+  border: 1px solid black;
+  background-color: #D3D3D3;
 }
-.add-exp-container .add-exp {
-  height: 30px;
-  width: 30px;
+.add-exp-container .add-exp, .add-exp-container .rm-exp {
+  height: 1.3em;
+  width: 1.3em;
   border-radius: 4px;
+  margin: 0.3em 0;
+  margin-bottom: 0.5em;
 }
-.add-exp-container .add-exp:hover {
+.add-exp-container .add-exp:hover, .add-exp-container .rm-exp:hover {
   background-color: #A9A9A9;
 }
 .add-exp-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0.3em 0;
 }
-.add-exp-container input {
+.add-exp-container form input {
+  margin: 0.3em 0;
   max-width: 15vw;
+  font-size: 1em;
+}
+.add-exp-container form .submit-exp {
+  margin: 1em 1em;
+  padding: 0.5em 2em;
+}
+.add-exp-container form .exp-btn.decline {
+  margin-right: 0.5em;
+}
+.add-exp-container .exps {
+  width: 100%;
+  text-align: center;
+  word-wrap: break-word;
+  border-bottom: 1px dashed black;
   margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0.2em;
+}
+.add-exp-container .exps .rm-exp {
+  margin: 0.2em 0;
+}
+.add-exp-container .exp-active {
+  flex: 1 1 80%;
+  background-color: white;
+}
+.add-exp-container .exp-active:hover {
+  background-color: white;
+}
+.add-exp-container .exp-inactive {
+  flex: 1 1 80%;
+  background-color: #D3D3D3;
+}
+.add-exp-container .exp-inactive:hover {
+  background-color: white;
+}
+
+.main-exp-container {
+  flex: 1 1 80vw;
+  border: 1px solid black;
 }/*# sourceMappingURL=styles.css.map */

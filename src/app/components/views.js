@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Experiments from './experiments.js';
+import Experiments from './experiments/ExperimentsMain.js';
 
 const ExperimentsView = function(props) {
   return (<Experiments/>);
