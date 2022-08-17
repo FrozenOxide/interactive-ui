@@ -20,7 +20,7 @@ const ExpInputText = function (props) {
   }
   
   return (
-    <form onSubmit={submitExperiment}>
+    <form onSubmit={submitExperiment} className='exps'>
       <input type="text" className='add-exp-text' value={text} onChange={(e) => { setText(e.target.value) }}></input>
       <div className='exp-btn-container'>
         <input type="button" value='X' className='exp-btn decline' onClick={declineExperiment}></input>
@@ -44,23 +44,21 @@ const ExperimentsColumn = function (props) {
   }
   
   function RenderExps() {
-    let newExps;
-    newExps = exps.map((exp) => {
+    return exps.map((exp) => {
       return (
         <div className={exp.id == props.activeExp ? 'exps exp-active' : 'exps exp-inactive'} key={exp.id} data-key={exp.id} onClick={setActive}>
           {exp.name}
-          <img src={rmsvg} className='rm-exp' data-key={exp.id} onClick={(e) => { props.rmParentExps(e.target.dataset.key); }} />
+          <img src={rmsvg} className='rm-exp' data-key={exp.id} data-exp={exp.name} onClick={(e) => { props.rmParentExps(e); }} />
         </div>
       );});
-    return newExps;
   }
     
   return (
-    <div className='add-exp-container'>
+    <div className='exps-column'>
       {RenderExps()}
       {adding
         ? <ExpInputText setParentAdding={setParentAdding} addParentExps={props.addParentExps}/>
-        : <img src={addsvg} className='add-exp' onClick={() => { setAdding(true) }}></img>
+        : <div className="exps exp-inactive add-exp" onClick={() => { setAdding(true); }}><img src={addsvg}/></div>
       }
     </div>
   );

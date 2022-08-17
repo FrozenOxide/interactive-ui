@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExperimentsColumn } from './ExperimentsColumn.js';
+import { ExperimentsContent } from './ExperimentsContent.js';
 
 
 const Experiments = function (props) {
@@ -11,8 +12,16 @@ const Experiments = function (props) {
     setExperiments((prevState) => ([ ...prevState, addState]));
   }
 
-  function rmParentExps(rmID) {
-    setExperiments((prevState) => (prevState.filter((elem) => (elem.id != rmID))))  
+  function rmParentExps(e) {
+    const rmID = e.target.dataset.key;
+    const expName = e.target.dataset.exp;
+    let confirmSelection = confirm(`Are you sure you want to delete experiment: ${expName}?`);
+    
+    if (confirmSelection) {
+      setExperiments((prevState) => (prevState.filter((elem) => (elem.id != rmID))));  
+    } else {
+      return;
+    }
   }
 
   function setParentActive(newState) {
@@ -20,10 +29,9 @@ const Experiments = function (props) {
   }
 
   return (
-    <div className='exp-container'>
+    <div className='exps-container'>
       <ExperimentsColumn addParentExps={addParentExps} rmParentExps={rmParentExps} setParentActive={setParentActive} exps={experiments} activeExp={activeExp} />
-      <div className='main-exp-container'>
-      </div>
+      <ExperimentsContent activeExp={activeExp}/>
     </div>
   );
 }
