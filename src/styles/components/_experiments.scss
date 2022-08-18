@@ -2,6 +2,7 @@
 
 .exps-container {
     display: flex;
+    min-height: 60%;
     max-height: 90%;
 }
 
@@ -175,4 +176,14 @@
         }
     }
 }
+}
+
+.setup-form {
+    display: flex;
+    justify-content: space-evenly;
+    .setup-item {
+        display: flex;
+        flex-direction: column;
+
+    }
 }

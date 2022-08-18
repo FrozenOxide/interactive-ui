@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@forward '../abstracts/colors';
+@forward '../abstracts/fonts';
 
-// colors
-$color-active: white;
-$color-inactive:#D3D3D3;
 // heights
 $exp-container-min-height: calc(100% - 4rem);
 $exp-protocol-height: calc(100% - 27px - (0.8em));
@@ -11,5 +9,3 @@ $border-std: 1px solid black;
 $border-thick: 2px solid black;
 $border-rad-std: 8px;
 $border-rad-nav: 10% 10% 0% 0% / 10% 46% 10% 10%;
-// font
-$font: 'Roboto', sans-serif;
