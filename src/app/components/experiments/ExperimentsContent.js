@@ -54,7 +54,31 @@ const SetupTab = function (props) {
 }
 
 const DeckTab = function (props) {
-  
+  return (
+    <div className="deck-container">
+      <div className="bp-container">
+        <div className="bp-col1">
+          <div className="bp-item"></div>
+          <div className="bp-item"></div>
+          <div className="bp-item"></div>
+        </div>
+        <div className="bp-col2">
+          <div className="bp-item"></div>
+          <div className="bp-item"></div>
+          <div className="bp-item"></div>
+        </div>
+        <div className="bp-col3">
+          <div className="bp-item"></div>
+          <div className="bp-item"></div>
+          <div className="bp-item"></div>
+        </div>
+        <div className="tip-box-container">
+          <div className="tip-box-item"></div>
+          <div className="tip-box-item"></div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const ProtocolTab = function (props) {

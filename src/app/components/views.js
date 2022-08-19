@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Experiments from './experiments/ExperimentsMain.js';
+import Settings from './settings/SettingsMain.js';
 
 const ExperimentsView = function(props) {
   return (<Experiments/>);
@@ -14,7 +15,7 @@ const MimicView = function(props) {
 }
 
 const SettingsView = function(props) {
-  return (<div>SETTINGS</div>);
+  return (<Settings/>);
 }
 
 const DesignerView = function (props) {

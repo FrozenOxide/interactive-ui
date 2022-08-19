@@ -215,4 +215,31 @@ ul li {
 .setup-form .setup-item {
   display: flex;
   flex-direction: column;
+}
+
+.settings-container {
+  text-align: center;
+}
+
+.settings-section,
+.settings-subsection {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-container .deck-num {
+  max-width: 150px;
+}
+
+.settings-btns {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }/*# sourceMappingURL=styles.css.map */
