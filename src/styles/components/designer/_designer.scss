@@ -1,4 +1,15 @@
-@use '../abstracts' as *;
+
+// heights
+$exp-container-min-height: calc(100% - 4rem);
+$exp-protocol-height: calc(100% - 27px - (0.8em));
+//borders
+$border-std: 1px solid black;
+$border-thick: 2px solid black;
+$border-rad-std: 8px;
+$border-rad-nav: 10% 10% 0% 0% / 10% 46% 10% 10%;
+// colors
+$color-active: white;
+$color-inactive:#D3D3D3;
 
 .exps-container {
     display: flex;
@@ -18,20 +29,24 @@
         border-bottom: $border-std;
         border-radius: 4px;
         user-select: none;
+
         &:last-child img {
             display: block;
             margin-inline: auto;
             max-height: 2em;
             max-width: 2em;
         }
+
         &:not(:last-child) {
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             img {
                 max-height: 1.3em;
                 max-width: 1.3em;
                 border-radius: 8px;
+
                 &:hover {
                     background-color: #D3D3D3;
                 }
@@ -39,9 +54,11 @@
         }
 
     }
+
     .exp-active {
         background-color: white;
     }
+
     .exp-inactive {
         background-color: #D3D3D3;
 
@@ -58,6 +75,7 @@
 
         margin: 0.3em 0;
         font-size: 0.9rem;
+
         input {
             margin: 0.3em 0;
             max-width: 15vw;
@@ -74,7 +92,7 @@
         }
     }
 
-    
+
 }
 
 
@@ -83,18 +101,23 @@
     flex: 4;
     border: $border-std;
     border-radius: $border-rad-std;
+
     .exps-nav {
         display: flex;
         margin: 0.3em 0;
         padding: 0;
+
         .exp-nav {
             padding: 0 3em;
         }
+
         .exp-nav-active {
             background-color: white;
         }
+
         .exp-nav-inactive {
             background-color: #D3D3D3;
+
             &:hover {
                 background-color: white;
             }
@@ -122,20 +145,23 @@
         display: flex;
         max-height: $exp-protocol-height;
 
-        > * {
+        >* {
             overflow-y: scroll;
             overflow-x: hidden;
             margin: 0 0 5px 5px;
         }
+
         .protocol-steps {
             flex: 2.5;
 
         }
+
         .protocol-options {
             flex: 1;
             user-select: none;
             border: $border-std;
             border-radius: $border-rad-std;
+
             .prot-opt {
                 display: flex;
                 justify-content: center;
@@ -145,7 +171,7 @@
                 border-radius: 8px;
                 margin: 1em 0.5em 0 0.5em;
                 padding: 1em 2em;
-                
+
             }
         }
     }
@@ -153,37 +179,83 @@
 
 @media (max-width: 500px) {
 
-.exps-container {
-    max-height: none;
-}
-
-.main-exp-container {
-    max-height: 100%;
-    .exps-nav {
-        flex-direction: column;
+    .exps-container {
+        max-height: none;
     }
-    .protocol-container {
-        flex-direction: column;
-        
-        .protocol-options {
-            margin: 0.5em;
-            padding: 0;
-            .prot-opt {
-                margin: 1em 0.1em 0 0.1em;
-                padding: 0.5em 0;
-                
+
+    .main-exp-container {
+        max-height: 100%;
+
+        .exps-nav {
+            flex-direction: column;
+        }
+
+        .protocol-container {
+            flex-direction: column;
+
+            .protocol-options {
+                margin: 0.5em;
+                padding: 0;
+
+                .prot-opt {
+                    margin: 1em 0.1em 0 0.1em;
+                    padding: 0.5em 0;
+
+                }
             }
         }
     }
-}
 }
 
 .setup-form {
     display: flex;
     justify-content: space-evenly;
+
     .setup-item {
         display: flex;
         flex-direction: column;
 
+    }
+}
+
+.deck-container {
+    display: flex;
+    gap: 0.5em;
+
+
+    .deck-target {
+        display: flex;
+        justify-content: center;
+        flex: 2;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin-left: 0.5em;
+        margin-bottom: 0.5em;
+        .deck-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .deck-item {
+            height: 100px;
+            width: 100px;
+            border: 1px dashed black;
+            border-radius: 8px;
+        }
+    }
+
+    .deck-options {
+        flex: 1;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin-bottom: 0.5em;
+        .deck-option {
+            border: 1px solid black;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1em 0.3em 0 0.3em;
+            padding: 0.5em 0;
+            user-select: none;
+        }
     }
 }

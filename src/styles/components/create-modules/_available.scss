@@ -1,0 +1,18 @@
+.available-modules-container {
+    text-align: center;
+    user-select: none;
+
+}
+
+.available-modules {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.5em;
+    .available-module {
+        border: 1px solid black;
+        border-radius: 6px;
+        padding: 0.5em 2em;
+    }
+}

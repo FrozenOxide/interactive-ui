@@ -217,29 +217,109 @@ ul li {
   flex-direction: column;
 }
 
-.settings-container {
-  text-align: center;
+.deck-container {
+  display: flex;
+  gap: 0.5em;
 }
-
-.settings-section,
-.settings-subsection {
+.deck-container .deck-target {
+  display: flex;
+  justify-content: center;
+  flex: 2;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+}
+.deck-container .deck-target .deck-col {
+  display: flex;
+  flex-direction: column;
+}
+.deck-container .deck-target .deck-item {
+  height: 100px;
+  width: 100px;
+  border: 1px dashed black;
+  border-radius: 8px;
+}
+.deck-container .deck-options {
+  flex: 1;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-bottom: 0.5em;
+}
+.deck-container .deck-options .deck-option {
+  border: 1px solid black;
+  border-radius: 8px;
+  text-align: center;
+  margin: 1em 0.3em 0 0.3em;
+  padding: 0.5em 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
 
-.input-container {
+.cm-container {
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.cm-type-container {
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.cm-type-container .cm-type {
+  padding: 0.4em 0.8em;
+  margin: 0 0.7em;
+}
+.cm-type-container .cm-type-active {
+  background-color: #666699;
+}
+
+.cm-setup-container h2 {
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.cm-setup-container .cm-setup-form {
+  display: flex;
+  flex-direction: column;
+}
+.cm-setup-container .cm-setup-form label {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0.4em 0;
 }
-.input-container .deck-num {
-  max-width: 150px;
+.cm-setup-container .cm-setup-form .cm-setup-submit {
+  padding: 0.5em 3em;
+  margin: 0.5em auto;
 }
 
-.settings-btns {
+.available-modules-container {
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.available-modules {
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.5em;
+}
+.available-modules .available-module {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 0.5em 2em;
 }/*# sourceMappingURL=styles.css.map */

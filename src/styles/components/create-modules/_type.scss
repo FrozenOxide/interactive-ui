@@ -1,0 +1,20 @@
+
+.cm-container {
+    text-align: center;
+    user-select: none;
+}
+
+.cm-type-container {
+    text-align: center;
+    user-select: none;
+
+    .cm-type {
+        padding: 0.4em 0.8em;
+        margin: 0 0.7em;
+    }
+
+
+    .cm-type-active {
+        background-color: #666699;
+    }
+}

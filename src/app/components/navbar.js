@@ -9,14 +9,13 @@ function Navbar(props) {
     const tabName = e.target.outerText.toLowerCase();
     props.setParentState(tabName);
   }
-
   return (
     <ul className='navbar'>
-      <li onClick={changeTab} className={currTab == 'experiments' ? active:inactive}>Experiments</li>
-      <li onClick={changeTab} className={currTab == 'calendar' ? active:inactive}>Calendar</li>
-      <li onClick={changeTab} className={currTab == 'mimic' ? active:inactive}>Mimic</li>
-      <li onClick={changeTab} className={currTab == 'settings' ? active:inactive}>Settings</li>
+      <li onClick={changeTab} className={currTab == 'monitor' ? active:inactive}>Monitor</li>
+      <li onClick={changeTab} className={currTab == 'control panel' ? active:inactive}>Control Panel</li>
       <li onClick={changeTab} className={currTab == 'designer' ? active:inactive}>Designer</li>
+      <li onClick={changeTab} className={currTab == 'calendar' ? active:inactive}>Calendar</li>
+      <li onClick={changeTab} className={currTab == 'create modules' ? active:inactive}>Create Modules</li>
     </ul>);
 }
 

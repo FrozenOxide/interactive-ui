@@ -1,5 +1,10 @@
-@use '../abstracts' as *;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+$font-reg: 'Roboto', sans-serif;
+$border-std: 1px solid black;
+$border-thick: 2px solid black;
+$border-rad-std: 8px;
+$border-rad-nav: 10% 10% 0% 0% / 10% 46% 10% 10%;
 
 * {
     box-sizing: border-box;

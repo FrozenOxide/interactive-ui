@@ -56,26 +56,27 @@ const SetupTab = function (props) {
 const DeckTab = function (props) {
   return (
     <div className="deck-container">
-      <div className="bp-container">
-        <div className="bp-col1">
-          <div className="bp-item"></div>
-          <div className="bp-item"></div>
-          <div className="bp-item"></div>
+      <div className='deck-target'>
+        <div className="deck-col">
+          <div className="deck-item deck-item-1"></div>
+          <div className="deck-item deck-item-2"></div>
+          <div className="deck-item deck-item-3"></div>
         </div>
-        <div className="bp-col2">
-          <div className="bp-item"></div>
-          <div className="bp-item"></div>
-          <div className="bp-item"></div>
+        <div className="deck-col">
+          <div className="deck-item deck-item-4"></div>
+          <div className="deck-item deck-item-5"></div>
+          <div className="deck-item deck-item-6"></div>
         </div>
-        <div className="bp-col3">
-          <div className="bp-item"></div>
-          <div className="bp-item"></div>
-          <div className="bp-item"></div>
+        <div className="deck-col">
+          <div className="deck-item deck-item-7"></div>
+          <div className="deck-item deck-item-8"></div>
+          <div className="deck-item deck-item-9"></div>
         </div>
-        <div className="tip-box-container">
-          <div className="tip-box-item"></div>
-          <div className="tip-box-item"></div>
-        </div>
+      </div>
+      <div className='deck-options'>
+        <div className='deck-option bottle'> Bottle </div>
+        <div className='deck-option plate'> Plate </div>
+        <div className='deck-option tipbox'> TipBox </div>
       </div>
     </div>
   );
@@ -117,6 +118,8 @@ const ExperimentsContent = function (props) {
     <div className="main-exp-container">
       <ExperimentNav tab={tab} setTab={setTab} />
       {tab === 'Setup' ? <SetupTab setSetup={setSetup} /> : null}
+      {tab === 'Deck' ? <DeckTab /> : null}
+      {tab == 'Protocol' ? <ProtocolTab/> : null}
     </div>
 
     
