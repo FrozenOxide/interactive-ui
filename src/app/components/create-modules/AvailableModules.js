@@ -6,18 +6,29 @@ const AvailableModules = function (props) {
   const protocolModules = props.protocolModules;
 
   const renderSetupModules = function () {
-    if (setupModules.length != 0) {
-      return (
-        setupModules.map((module) => {
-          return (
-            <div key={module.name}
-              className='available-module available-setup-module'>
-              {module.name}
-            </div>
-          )
-        })
-      );
-    }    
+    function showDetails(e) {
+      console.log(e);
+    }
+        
+    return (
+      setupModules.map((module) => {
+        return (
+          <div key={module.name}
+            data-temp={module.temperature}
+            data-co2={module.co2}
+            data-humidity={module.humidity}
+            className='available-module available-setup-module'
+            onClick={showDetails}>
+            {module.name}
+            <span className='available-module-tooltip available-module-setup-tooltip'>
+              <p> temp: {module.temperature} </p>
+              <p> CO2: {module.co2} </p>
+              <p> humidity: {module.humidity} </p>
+            </span>
+          </div>
+        )
+      })
+    );
   }
 
   return (

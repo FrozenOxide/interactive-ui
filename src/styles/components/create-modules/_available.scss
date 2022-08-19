@@ -14,5 +14,23 @@
         border: 1px solid black;
         border-radius: 6px;
         padding: 0.5em 2em;
+        position: relative;
+        .available-module-tooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 1;
+            left: 105%;
+            top: -0.5em;
+            // line-height: 0.2em;
+            background-color: black;
+            color: white;
+            border-radius: 6px;
+            padding: 0.1em 0.5em;
+            max-width: 100px;
+        }
     }
+}
+
+.available-module:hover .available-module-tooltip {
+    visibility: visible;
 }
