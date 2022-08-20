@@ -15,7 +15,8 @@ function Navbar(props) {
       <li onClick={changeTab} className={currTab == 'control panel' ? active:inactive}>Control Panel</li>
       <li onClick={changeTab} className={currTab == 'designer' ? active:inactive}>Designer</li>
       <li onClick={changeTab} className={currTab == 'calendar' ? active:inactive}>Calendar</li>
-      <li onClick={changeTab} className={currTab == 'create modules' ? active:inactive}>Create Modules</li>
+      <li onClick={changeTab} className={currTab == 'create modules' ? active : inactive}>Create Modules</li>
+      <li onClick={changeTab} className={currTab == 'available modules' ? active:inactive}>Available Modules</li>
     </ul>);
 }
 

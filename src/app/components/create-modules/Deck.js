@@ -4,6 +4,7 @@ const Deck = function (props) {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [capacity, setCapacity] = useState(0);
+  const appendDeckModules = props.appendDeckModules;
   const active = 'cm-deck-item cm-deck-active';
   const inactive = 'cm-deck-item cm-deck-inactive';
 
@@ -18,9 +19,28 @@ const Deck = function (props) {
       return 'tipbox (units)'
     }
   }
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (name == '') {
+      alert('you must enter a valid name');
+      return;
+    }
+    const yes = confirm(`are you sure you want to setup with:\r\ntype:${type}\r\ncapacity:${capacity}`);
+    if (!yes) {
+      return;
+    }
+    appendDeckModules({
+      name: name,
+      type: type,
+      capacity: capacity,
+    })
+    setName('');
+    setType('');
+    setCapacity(0);
+  }
 
   return (
-    <div className='cm-deck-container'>
+    <div className='cm-deck-container' onSubmit={handleSubmit}>
       <h2> Deck Item Module </h2>
       <form className='cm-deck-form' >
         
@@ -29,11 +49,7 @@ const Deck = function (props) {
         </label>
 
         <label htmlFor="item-type"> Item Type
-          {/* <select name="item-type" className='cm-deck-item' selected="selected" onChange={(e) => { setType(e.target.value) }} defaultValue="bottle">
-            <option value="bottle">Bottle</option>
-            <option value="plate">Plate</option>
-            <option value="tipbox">Tipbox</option>
-          </select> */}
+
           <div className='cm-deck-btns'>
             <input type="button" name="item-type" className={type =='bottle' ? active : inactive} value='Bottle' onClick={(e) => { setType(e.target.value.toLowerCase()) }} ></input>
             <input type="button" name="item-type" className={type =='plate' ? active : inactive} value='Plate' onClick={(e) => { setType(e.target.value.toLowerCase()) }}></input>
@@ -46,14 +62,7 @@ const Deck = function (props) {
           <input type="number" className='cm-deck-item' name="capacity" min="-100" max="100" value={capacity} onChange={(e) => { setCapacity(e.target.value) } } />
         </label>
 
-        {/* <label htmlFor="co2">CO2
-          <input type="number" className='cm-deck-item' name="co2" min="-100" max="100" placeholder="0" value={co2} onChange={(e) => { setCO2(e.target.value) } }/>
-        </label>
-        <label htmlFor="humidity">Humidity %
-          <input type="number" className='cm-deck-item' name="humidity" min="0" max="100" placeholder="0" value={humidity} onChange={(e) => {setHumidity(e.target.value)}} />
-        </label> */}
-
-        <input type="submit" value="Add Module" className='cm-setup-submit'/>
+        <input type="submit" value="Add Module" className='cm-deck-submit'/>
       </form>
     </div>
   );

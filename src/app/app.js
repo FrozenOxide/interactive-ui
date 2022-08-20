@@ -2,15 +2,47 @@ import React, {useState} from 'react';
 import Navbar from './components/navbar.js';
 import Experiments from './components/experiments/Experiments.js';
 import CreateModules from './components/create-modules/CreateModules.js';
+import AvailableModules from './components/available-modules/AvailableModules.js';
 
 function App(props) {
   const [currTab, setCurrTab] = useState('monitor');
-  const currView = 'experiments'
+  const [setupModules, setSetupModules] = useState([]);
+  const [deckModules, setDeckModules] = useState([]);
+  const [protocolModules, setProtocolModules] = useState([]);
+
   
   function setParentTab(newTab) {
     setCurrTab(newTab);
   }
+
+  // for use in create modules & avail modules tabs
+  const appendSetupModules = function (addState) {
+    setSetupModules((prevState) => [...prevState, addState]);
+  }
+    
+  const appendDeckModules = function (addState) {
+    setDeckModules((prevState) => [...prevState, addState]);
+  }
+    
+  const appendProtocolModules = function (addState) {
+    setProtocolModules((prevState) => [...prevState, addState]);
+  }
+
+  function returnCreateModules() {
+    return (
+      <CreateModules setupModules={setupModules} appendSetupModules={appendSetupModules}
+        deckModules={deckModules} appendDeckModules={appendDeckModules}
+        protocolModules={protocolModules} appendProtocolModules={appendProtocolModules}/>
+    );
+  }
   
+  function returnAvailableModules() {
+    return (
+      <AvailableModules setupModules={setupModules}
+        deckModules={deckModules} protocolModules ={protocolModules}/>
+    );
+  }
+
   return (
     <div className='content'>
       <Navbar currTab={currTab} setParentState={setParentTab} />
@@ -18,7 +50,8 @@ function App(props) {
       {currTab == 'control panel' ? <div> Control Panel </div> : null}
       {currTab == 'designer' ? <Experiments/> : null}
       {currTab == 'calendar' ? <div> Calendar </div> : null}
-      {currTab == 'create modules' ? <CreateModules/> : null}
+      {currTab == 'create modules' ? returnCreateModules() : null}
+      {currTab == 'available modules' ? returnAvailableModules() : null}
     </div>
   );
 }

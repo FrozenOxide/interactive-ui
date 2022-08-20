@@ -6,10 +6,6 @@ const AvailableModules = function (props) {
   const protocolModules = props.protocolModules;
 
   const renderSetupModules = function () {
-    function showDetails(e) {
-      console.log(e);
-    }
-        
     return (
       setupModules.map((module) => {
         return (
@@ -17,8 +13,7 @@ const AvailableModules = function (props) {
             data-temp={module.temperature}
             data-co2={module.co2}
             data-humidity={module.humidity}
-            className='available-module available-setup-module'
-            onClick={showDetails}>
+            className='available-module available-setup-module'>
             {module.name}
             <span className='available-module-tooltip available-module-setup-tooltip'>
               <p> temp: {module.temperature} </p>
@@ -31,9 +26,29 @@ const AvailableModules = function (props) {
     );
   }
 
+  const renderDeckModules = function () {
+    return (
+      deckModules.map((module) => {
+        return (
+          <div key={module.name}
+            data-type={module.type}
+            data-capacity={module.capacity}
+            className='available-module available-deck-module'>
+            {module.name}
+            <span className='available-module-tooltip available-module-deck-tooltip'>
+              <p> type: {module.type} </p>
+              <p> capcity: {module.capacity} </p>
+            </span>
+          </div>
+        )
+      })
+    );
+  }
+
   return (
     <div className='available-modules-container'>
       <h2> Available Modules </h2>
+      
       <div className='available-setup-modules-container'>
         <h3> Setup Modules </h3>
         <div className='available-modules available-setup-modules'>
@@ -44,7 +59,7 @@ const AvailableModules = function (props) {
       <div className='available-deck-modules-container'>
         <h3> Deck Modules </h3>
         <div className='available-modules available-deck-modules'>
-          {setupModules.length == 0 ? <p> No available deck modules</p> : null} 
+          {setupModules.length == 0 ? <p> No available deck modules</p> : renderDeckModules()} 
         </div>
       </div>
           
