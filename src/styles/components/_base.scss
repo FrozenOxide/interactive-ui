@@ -25,11 +25,7 @@ body,
 ul {
     list-style: none;
     user-select: none;
-    font-size: 1.25rem;
-
     li {
-        border: $border-thick;
-        border-radius: $border-rad-nav;
         text-align: center;
 
     }

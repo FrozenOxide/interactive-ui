@@ -21,11 +21,8 @@ ul {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-size: 1.25rem;
 }
 ul li {
-  border: 2px solid black;
-  border-radius: 10% 10% 0% 0%/10% 46% 10% 10%;
   text-align: center;
 }
 
@@ -34,19 +31,21 @@ ul li {
   flex-flow: row wrap;
   padding: 0;
   margin: 0 0 0 0;
+  font-size: 1.2em;
+  background-color: #1a1a26;
+  color: #E7F6F2;
 }
 .navbar li {
-  flex: 1;
-  flex-wrap: wrap;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border-radius: 6px;
 }
 .navbar .navbar-active {
-  background-color: white;
-}
-.navbar .navbar-inactive {
-  background-color: #D3D3D3;
+  background-color: #33334c;
 }
 .navbar .navbar-inactive:hover {
-  background-color: white;
+  background-color: #33334c;
+  cursor: pointer;
 }
 
 .exps-container {
@@ -335,11 +334,13 @@ ul li {
       -ms-user-select: none;
           user-select: none;
 }
+
 .protocol-base {
   border-radius: 8px;
   box-shadow: 0 0 10px;
   overflow-y: scroll;
   height: 50vh;
+  width: 35vw;
 }
 .protocol-base .prot-base-opt {
   display: flex;
@@ -359,6 +360,7 @@ ul li {
   justify-content: flex-start;
   align-items: stretch;
   height: 50vh;
+  width: 35vw;
 }
 .protocol-module .prot-mod-step {
   border: 1px solid black;

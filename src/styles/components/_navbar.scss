@@ -1,28 +1,37 @@
 // NAVBAR
 
 $color-active: white;
-$color-inactive:#D3D3D3;
+$color-inactive: #D3D3D3;
 
 .navbar {
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+
     display: flex;
     flex-flow: row wrap;
     padding: 0;
     margin: 0 0 0 0;
+    font-size: 1.2em;
+    // background-color: #231955;
+    background-color: #1a1a26;
+
+    color: #E7F6F2;
+
     li {
-        flex: 1;
-        // padding: 0.1em 2em;
-        flex-wrap: wrap;
+        padding: 0.5em 1em;
+        margin: 0.5em;
+        border-radius: 6px;
+
     }
 
     .navbar-active {
-        background-color: $color-active;
+        background-color: #33334c;
     }
 
-    .navbar-inactive {
-        background-color: $color-inactive;
+    .navbar-inactive:hover {
 
-        &:hover {
-            background-color: $color-active;
-        }
+        background-color: #33334c;
+        cursor: pointer;
     }
 }

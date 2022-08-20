@@ -19,11 +19,6 @@ $color-inactive: #D3D3D3;
     gap: 4em;
     user-select: none;
 
-
-    .protocol-base-container,
-    .protocol-module-container {
-        // margin-inline: 5vw;
-    }
 }
 
 // lhs box
@@ -33,6 +28,7 @@ $color-inactive: #D3D3D3;
     box-shadow: 0 0 10px;
     overflow-y: scroll;
     height: 50vh;
+    width: 35vw;
     // width: 35vw;
 
     .prot-base-opt {
@@ -58,6 +54,7 @@ $color-inactive: #D3D3D3;
     justify-content: flex-start;
     align-items: stretch;
     height: 50vh;
+    width: 35vw;
 
     // margin-left: 5em;
     // max-width: 30vw;
