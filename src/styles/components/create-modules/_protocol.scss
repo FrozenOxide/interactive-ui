@@ -46,12 +46,14 @@ $color-inactive: #D3D3D3;
 
 // rhs box
 .protocol-module {
+    overflow-y: scroll;
     // border: $border-std;
     border-radius: $border-rad-std;
     box-shadow: 0 0 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    // justify-content: flex-start;
+    gap: 0.2em;
     align-items: stretch;
     height: 50vh;
     width: 35vw;
@@ -60,7 +62,7 @@ $color-inactive: #D3D3D3;
     // max-width: 30vw;
 
     .prot-mod-step {
-        // flex: 1;
+        flex: 1;
         border: $border-std;
         border-radius: $border-rad-std;
         margin: 0;
@@ -69,8 +71,6 @@ $color-inactive: #D3D3D3;
     }
 
     .unfilled {
-        visibility: hidden;
-        padding: 0;
-        height: 0.2em;
+        border: 1px dashed black;
     }
 }

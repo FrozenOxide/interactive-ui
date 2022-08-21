@@ -48,6 +48,33 @@ ul li {
   cursor: pointer;
 }
 
+@media (min-width: 750px) and (max-width: 975px) {
+  .navbar {
+    font-size: 1em;
+  }
+  .navbar li {
+    padding: 0.4em 0.8em;
+    margin: 0.3em;
+  }
+}
+@media (min-width: 510px) and (max-width: 750px) {
+  .navbar {
+    font-size: 0.8em;
+  }
+  .navbar li {
+    padding: 0.2em 0.4em;
+    margin: 0.2em;
+  }
+}
+@media (max-width: 510px) {
+  .navbar {
+    font-size: 0.6em;
+  }
+  .navbar li {
+    padding: 0.1em 0.2em;
+    margin: 0.1em;
+  }
+}
 .exps-container {
   display: flex;
   min-height: 60%;
@@ -353,16 +380,18 @@ ul li {
 }
 
 .protocol-module {
+  overflow-y: scroll;
   border-radius: 8px;
   box-shadow: 0 0 10px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 0.2em;
   align-items: stretch;
   height: 50vh;
   width: 35vw;
 }
 .protocol-module .prot-mod-step {
+  flex: 1;
   border: 1px solid black;
   border-radius: 8px;
   margin: 0;
@@ -370,9 +399,7 @@ ul li {
   background-color: #D3D3D3;
 }
 .protocol-module .unfilled {
-  visibility: hidden;
-  padding: 0;
-  height: 0.2em;
+  border: 1px dashed black;
 }
 
 .available-modules-container {

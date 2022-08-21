@@ -4,16 +4,13 @@ $color-active: white;
 $color-inactive: #D3D3D3;
 
 .navbar {
-    // position: fixed;
-    // top: 0;
-    // left: 0;
+
 
     display: flex;
     flex-flow: row wrap;
     padding: 0;
     margin: 0 0 0 0;
     font-size: 1.2em;
-    // background-color: #231955;
     background-color: #1a1a26;
 
     color: #E7F6F2;
@@ -33,5 +30,35 @@ $color-inactive: #D3D3D3;
 
         background-color: #33334c;
         cursor: pointer;
+    }
+}
+
+@media (min-width:750px) and (max-width:975px ) {
+    .navbar {
+        font-size: 1em;
+        li {
+            padding: 0.4em 0.8em;
+            margin: 0.3em;
+        }
+    }
+}
+
+@media (min-width:510px) and (max-width: 750px) {
+    .navbar {
+        font-size: 0.8em;
+        li {
+            padding: 0.2em 0.4em;
+            margin: 0.2em;
+        }
+    }
+}
+
+@media (max-width: 510px) {
+    .navbar {
+        font-size: 0.6em;
+        li {
+            padding: 0.1em 0.2em;
+            margin: 0.1em;
+        }
     }
 }
