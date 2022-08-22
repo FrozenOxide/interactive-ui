@@ -13,7 +13,7 @@ function App(props) {
   const [deckModules, setDeckModules] = useState([]);
   const [protocolModules, setProtocolModules] = useState([]);
 
-  
+  console.log(deckModules);
   function setParentTab(newTab) {
     setCurrTab(newTab);
   }

@@ -385,23 +385,37 @@ ul li {
   box-shadow: 0 0 10px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 0.2em;
   align-items: stretch;
   height: 50vh;
   width: 35vw;
 }
 .protocol-module .prot-mod-step {
-  flex: 1;
   border: 1px solid black;
   border-radius: 8px;
   margin: 0;
   padding: 1em 2em;
   background-color: #D3D3D3;
-}
-.protocol-module .unfilled {
-  border: 1px dashed black;
+  position: relative;
 }
 
+.clear {
+  margin: 1em 0;
+  padding: 0.4em 0.8em;
+}
+
+.cm-protocol-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.cm-protocol-form label {
+  display: flex;
+  flex-direction: column;
+}
 .available-modules-container {
   text-align: center;
   -webkit-user-select: none;

@@ -8,7 +8,7 @@ const CreateModules = function (props) {
   const [type, setType] = useState('');
   const [setupModules, appendSetupModules] = [props.setSetupModules, props.appendSetupModules];
   const [deckModules, appendDeckModules] = [props.deckModules, props.appendDeckModules];
-  const [protocolModules, setProtocolModules] = [props.protocolModules, props.appendProtocolModules];
+  const [protocolModules, appendProtocolModules] = [props.protocolModules, props.appendProtocolModules];
 
 
   return (
@@ -16,7 +16,7 @@ const CreateModules = function (props) {
       <Type type={type} setType={setType} />
       {type == 'Setup' ? <Setup appendSetupModules={appendSetupModules} /> : null}
       {type == 'Deck' ? <Deck appendDeckModules={appendDeckModules} /> : null}
-      {type == 'Protocol' ? <Protocol /> : null}
+      {type == 'Protocol' ? <Protocol appendProtocolModules={appendProtocolModules} /> : null}
       <hr />
     </div>
   );

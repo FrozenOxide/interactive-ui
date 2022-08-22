@@ -9,7 +9,7 @@ const AvailableModules = function (props) {
     return (
       setupModules.map((module) => {
         return (
-          <div key={module.name}
+          <div key={`setup-module-${module.name}`}
             data-temp={module.temperature}
             data-co2={module.co2}
             data-humidity={module.humidity}
@@ -30,7 +30,7 @@ const AvailableModules = function (props) {
     return (
       deckModules.map((module) => {
         return (
-          <div key={module.name}
+          <div key={`deck-module=${module.name}`}
             data-type={module.type}
             data-capacity={module.capacity}
             className='available-module available-deck-module'>
@@ -38,6 +38,23 @@ const AvailableModules = function (props) {
             <span className='available-module-tooltip available-module-deck-tooltip'>
               <p> type: {module.type} </p>
               <p> capcity: {module.capacity} </p>
+            </span>
+          </div>
+        )
+      })
+    );
+  }
+
+  const renderProtocolModules = function () {
+    return (
+      protocolModules.map((module) => {
+        return (
+          <div key={`protocol-module-${module.name}`}
+            data-steps={module.length}
+            className='available-module available-protocol-module'>
+            {module.name}
+            <span className='available-module-tooltip available-module-protocol-tooltip'>
+              placeholder
             </span>
           </div>
         )
@@ -59,14 +76,14 @@ const AvailableModules = function (props) {
       <div className='available-deck-modules-container'>
         <h3> Deck Modules </h3>
         <div className='available-modules available-deck-modules'>
-          {setupModules.length == 0 ? <p> No available deck modules</p> : renderDeckModules()} 
+          {deckModules.length == 0 ? <p> No available deck modules</p> : renderDeckModules()} 
         </div>
       </div>
           
       <div className='available-protocol-modules-container'>
         <h3> Protocol Modules </h3>
         <div className='available-modules available-protocol-modules'>
-          {setupModules.length == 0 ? <p> No available deck modules</p> : null}   
+          {protocolModules.length == 0 ? <p> No available protocol modules</p> : renderProtocolModules()}   
         </div>
       </div>
     </div>

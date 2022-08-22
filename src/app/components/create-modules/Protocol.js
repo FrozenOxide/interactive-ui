@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import clsvg from '../../../images/remove.svg';
 
 const baseCommands = [
   "set_temperature",
@@ -26,7 +27,7 @@ const baseCommands = [
 
 const ProtocolOption = function (props) {
   const command = props.command;
-
+  
   const [{isDragging}, drag] = useDrag(() => ({
     type: 'command',
     item: {
@@ -47,59 +48,131 @@ const ProtocolOption = function (props) {
 const ProtocolTarget = function (props) {
   const command = props.command;
   const index = props.index;
-  const changeModule = props.changeModule;
-  const [noCommand, hasCommand] = ['prot-mod-step unfilled', 'prot-mod-step filled'];
 
-  const [{ isOver, didDrop, canDrop, name }, drop] = useDrop(
+  const [{isDragging}, drag] = useDrag(() => ({
+    type: 'command-reorder',
+    item: {
+      name: command,
+      index: index,
+    },
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging(),
+    })
+  }), [command])
+
+  const [{ isOver, didDrop, canDrop, name, initialPos }, drop] = useDrop(
     () => ({
-      accept: 'command',
+      accept: 'command-reorder',
       drop: (item) => {
-        // console.log(command);
-        // console.log(index);
-        // console.log(command);
-        changeModule(item.name, index);
+        console.log(item.index);
       },
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
         name: monitor.getItem(),
         didDrop: monitor.didDrop(),
-        canDrop: monitor.canDrop()
+        canDrop: monitor.canDrop(),
+        initialPos: monitor.getInitialClientOffset()
       })
-    }), [command, changeModule]
+    })
   )
 
+  function attachRef(el) {
+    drag(el);
+    drop(el);
+  }
+
+
   return (
-    <div className={command == null ? noCommand : hasCommand}
-      ref={drop}
-      style={{ backgroundColor: isOver ? "yellow" : null }}>
-      {isOver ? name.name : null}
+    <div className='prot-mod-step' ref={drag} data-ind={index}>
       {command}
+    </div>
+
+
+  );
+}
+
+const ProtocolBtns = function (props) {
+  const module = props.module;
+  const appendProtocolModules = props.appendProtocolModules;
+  const setModule = props.setModule;
+  const [name, setName] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (name == '') {
+      alert('you must enter a valid name');
+      return;
+    }
+    if (module.length == 0) {
+      alert('you must make a custom protocol to save');
+      return;
+    }
+    const yes = confirm(`are you sure ?`);
+    if (!yes) {
+      return;
+    }
+    appendProtocolModules({
+      name: name,
+      steps: module,
+    })
+    setName('');
+    setModule([]);
+  }
+  
+  return (
+    <div className='btns-container'>
+      <form className='cm-protocol-form' onSubmit={handleSubmit}>
+        
+        <label htmlFor="mod-name"> Module Name
+          <input type="text" className='cm-protocol-item' name="mod-name" value={name} onChange={(e) => { setName(e.target.value) } } />
+        </label>
+        <input type="submit" value="Add Module" className='cm-protocol-submit'/>
+      </form>
     </div>
   );
 }
 
+
 const Protocol = function (props) {
-  const [module, setModule] = useState([...Array(10)]);
-  function changeModule(newCommand, i) {
-    setModule((prevState) =>{
-      let prevArr =[...prevState];
-      prevArr[i] = newCommand;
-      return (prevArr);
+  const [module, setModule] = useState([]);
+  const appendProtocolModules = props.appendProtocolModules;
+
+  function appendToModule(newState) {
+    setModule((prevState) => {
+      return [...prevState, newState];
     })
   }
+
+
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: ['command', 'command-reorder'],
+      drop: (item, monitor) => {
+        const type = monitor.getItemType();
+
+        if (type == 'command') {
+          appendToModule(item.name); 
+        }
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      })
+    })
+  )
 
   return (
     <div className="cm-protocol-container">
       <h2> Protocol Module </h2>
 
+      <ProtocolBtns module={module} appendProtocolModules={appendProtocolModules} setModule={setModule} />
       <div className='cm-protocol-content'>
         
         <div className='protocol-base-container'>
           <h4> Base Commands (drag me)</h4>
-          <div className="protocol-base">
-            {baseCommands.map((command) => {
+          <div className="protocol-base" >
+            {baseCommands.map((command, i) => {
               return (
-                <ProtocolOption key={command} command={command} />
+                <ProtocolOption key={command} command={command} index={i} />
               );
             })}
           </div>
@@ -107,22 +180,16 @@ const Protocol = function (props) {
         
         <div className='protocol-module-container'>
           <h4> Custom Protocol Module </h4>
-          <div className="protocol-module">
-            {module.map((el, i) => (
-              <ProtocolTarget key={`tar-${i}`} command={el} module={module} changeModule={changeModule} index={i} />
-            ))}
-            
-            {/* {didDrop
-              ? module.map((command) => {
-                console.log(command);
-                return (
-                  <ProtocolTarget key={`tar-${command}`} command={command}/>
-                );
-              })
-              : null} */}
+          <div className="protocol-module" ref={drop}>
+            {module.length != 0
+              ?
+              module.map((el, i) => (
+                <ProtocolTarget command={el} index={i} key={`tar-${el}`}/>
+              ))
+              : null}
           </div>
+          <button className='clear' onClick={() => { setModule([])}} > Clear </button>
         </div>
-
       </div>
     </div>
   );
