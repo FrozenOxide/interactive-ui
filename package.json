@@ -9,7 +9,7 @@
     "build": "webpack-dev-server --hot",
     "build:prod": "webpack",
     "predeploy": "npm run build:prod",
-    "deploy": "gh-pages -d build:prod"
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "MIT",
