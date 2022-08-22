@@ -1,4 +1,5 @@
 {
+  "homepage": "http://supnoodles.github.io/interactive-ui",
   "name": "interactive-ui",
   "version": "1.0.0",
   "description": "",
@@ -6,7 +7,9 @@
   "scripts": {
     "start": "npm run build",
     "build": "webpack-dev-server --hot",
-    "build:prod": "webpack -p"
+    "build:prod": "webpack",
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d build:prod"
   },
   "author": "",
   "license": "MIT",
@@ -24,6 +27,7 @@
     "eslint": "^8.21.0",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "svg-url-loader": "^7.1.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
