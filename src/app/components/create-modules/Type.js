@@ -1,24 +1,37 @@
 import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
+import { Box, margin } from '@mui/system';
+import { ButtonGroup } from '@mui/material';
+import { Button, Slide } from '@mui/material';
+
+
 
 const Type = function (props) {
   const [type, setType] = [props.type, props.setType];
-  const active = 'cm-type cm-type-active';
-  const inactive = 'cm-type cm-type-inactive';
+  const active = 'success';
+  const inactive = 'primary';
 
   function handleType(e) {
-    setType(e.target.innerText);
+    setType(e.target.innerText.toLowerCase());
   }
 
+  const handleVariant = () => {
+
+  }
 
   return (
-    <div className='cm-type-container'>
-      <h2> Module Type </h2>
-      <div className='cm-type-btns'>
-        <button className={type == 'Setup' ? active : inactive} onClick={handleType}> Setup </button>
-        <button className={type == 'Deck' ? active : inactive} onClick={handleType} > Deck </button>
-        <button className={type == 'Protocol' ? active : inactive} onClick={handleType}> Protocol </button>
-      </div>
-    </div>
+    <React.Fragment>
+      <Slide direction="left" mountOnEnter unmountOnExit in={true}>
+        <div>
+          <Typography variant="h4" align="center"> Module Type </Typography>
+          <Box display="flex" justifyContent="center" sx={{mt: 4, gap: 3}}>
+            <Button variant={type == 'environment' ? 'contained' : 'outlined'} onClick={handleType} color={type == 'environment' ? active : inactive}>Environment</Button>
+            <Button variant={type == 'deck' ? 'contained' : 'outlined'} onClick={handleType} color={type == 'deck' ? active : inactive}>Deck</Button>
+            <Button variant={type == 'protocol' ? 'contained' : 'outlined'} onClick={handleType} color={type == 'protocol' ? active : inactive}>Protocol</Button>
+          </Box>
+        </div>
+      </Slide>
+    </React.Fragment>
   );
 }
 
