@@ -27,5 +27,5 @@
         "no-unreachable": "warn",
         "padded-blocks": ["warn", "never"]
     },
-    "ignorePatterns": ["webpack.config.js"]
+    "ignorePatterns": ["webpack.config.js", "bundle.js", "bundle.js.map"]
 }
