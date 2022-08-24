@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import clsvg from '../../../images/remove.svg';
+import rmsvg from '../../../images/remove.svg';
+import { Typography, Box, TextField, Button } from '@mui/material';
+import { Stack } from '@mui/system';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import { borders } from '@mui/system';
+import { Slide } from '@mui/material';
+
+const ItemOption = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  '&:hover': {
+    backgroundColor: "#ffa726",
+  }
+}));
+
+const ItemTarget = styled(Paper)(({ theme }) => ({
+  backgroundColor: "#ffa726",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const baseCommands = [
   "set_temperature",
@@ -24,10 +49,10 @@ const baseCommands = [
   "get_container",
   "modify_container"
 ]
-
+  
 const ProtocolOption = function (props) {
   const command = props.command;
-  
+
   const [{isDragging}, drag] = useDrag(() => ({
     type: 'command',
     item: {
@@ -39,160 +64,105 @@ const ProtocolOption = function (props) {
   }), [command])
   
   return (
-    <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }} className='prot-base-opt'>
+    <ItemOption variant="outlined" ref={drag} sx={{opacity: isDragging ? 0.5 : 1}}>
       {command}
-    </div>
+    </ItemOption>
   );
 }
 
-const ProtocolTarget = function (props) {
-  const command = props.command;
-  const index = props.index;
 
-  const [{isDragging}, drag] = useDrag(() => ({
-    type: 'command-reorder',
-    item: {
-      name: command,
-      index: index,
-    },
-    collect: monitor => ({
-      isDragging: !!monitor.isDragging(),
-    })
-  }), [command])
 
-  const [{ isOver, didDrop, canDrop, name, initialPos }, drop] = useDrop(
+export default function Protocol(props) {
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [module, setModule] = useState([]);
+  const [protocolModules, appendProtocolModules] = [props.protocolModules, props.appendProtocolModules];
+
+  const handleName = (e) => {
+    setName(e.target.value);
+    if (name.length < 2) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+  }
+
+  const handleSave = () => {
+    if (name == '') {
+      alert('Please enter a valid name');
+      return;
+    } else if (protocolModules.includes(name)) {
+      alert('name is already in use');
+      return;
+    }
+    if (confirm('Are you sure you want to save this protocol module?')) {
+      appendProtocolModules({
+        name: `PROT - ${name}`,
+        steps: module,
+      });
+      setModule([]);
+    }
+  }
+
+  const [{ isOver, didDrop, canDrop, commandName, initialPos }, drop] = useDrop(
     () => ({
-      accept: 'command-reorder',
+      accept: 'command',
       drop: (item) => {
-        console.log(item.index);
+        setModule((prevState) => {
+          return [...prevState, item.name];
+        })
       },
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
-        name: monitor.getItem(),
+        commandName: monitor.getItem(),
         didDrop: monitor.didDrop(),
         canDrop: monitor.canDrop(),
         initialPos: monitor.getInitialClientOffset()
       })
     })
-  )
-
-  function attachRef(el) {
-    drag(el);
-    drop(el);
-  }
-
-
-  return (
-    <div className='prot-mod-step' ref={drag} data-ind={index}>
-      {command}
-    </div>
-
-
   );
-}
-
-const ProtocolBtns = function (props) {
-  const module = props.module;
-  const appendProtocolModules = props.appendProtocolModules;
-  const setModule = props.setModule;
-  const [name, setName] = useState('');
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (name == '') {
-      alert('you must enter a valid name');
-      return;
-    }
-    if (module.length == 0) {
-      alert('you must make a custom protocol to save');
-      return;
-    }
-    const yes = confirm(`are you sure ?`);
-    if (!yes) {
-      return;
-    }
-    appendProtocolModules({
-      name: name,
-      steps: module,
-    })
-    setName('');
-    setModule([]);
-  }
-  
-  return (
-    <div className='btns-container'>
-      <form className='cm-protocol-form' onSubmit={handleSubmit}>
-        
-        <label htmlFor="mod-name"> Module Name
-          <input type="text" className='cm-protocol-item' name="mod-name" value={name} onChange={(e) => { setName(e.target.value) } } />
-        </label>
-        <input type="submit" value="Add Module" className='cm-protocol-submit'/>
-      </form>
-    </div>
-  );
-}
-
-
-const Protocol = function (props) {
-  const [module, setModule] = useState([]);
-  const appendProtocolModules = props.appendProtocolModules;
-
-  function appendToModule(newState) {
-    setModule((prevState) => {
-      return [...prevState, newState];
-    })
-  }
-
-
-  const [{ isOver }, drop] = useDrop(
-    () => ({
-      accept: ['command', 'command-reorder'],
-      drop: (item, monitor) => {
-        const type = monitor.getItemType();
-
-        if (type == 'command') {
-          appendToModule(item.name); 
-        }
-      },
-      collect: (monitor) => ({
-        isOver: !!monitor.isOver(),
-      })
-    })
-  )
 
   return (
-    <div className="cm-protocol-container">
-      <h2> Protocol Module </h2>
+    <React.Fragment>
+      <Slide direction="up" mountOnEnter unmountOnExit in={true}>
+        <Typography variant="h5" align="center" mt={4} mb={4}> Protocol Module </Typography>
+      </Slide>
+      
+      <Slide direction="up" mountOnEnter unmountOnExit in={true}>
+        <div>
+          <Box sx={{ display: 'flex', flexDirection: 'column', mb: 4, alignItems: 'center'}}>
 
-      <ProtocolBtns module={module} appendProtocolModules={appendProtocolModules} setModule={setModule} />
-      <div className='cm-protocol-content'>
-        
-        <div className='protocol-base-container'>
-          <h4> Base Commands (drag me)</h4>
-          <div className="protocol-base" >
-            {baseCommands.map((command, i) => {
-              return (
-                <ProtocolOption key={command} command={command} index={i} />
-              );
-            })}
-          </div>
+            {/* lhs box */}
+            <TextField error={nameError} helperText={nameError ? 'atleast two characters' : null} onChange={handleName} sx={{ width: '20%' }} label="Module Name" variant="outlined" />
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4 }}>
+            <Stack spacing={1} sx={{height: "50vh", width: "30vw", overflowY: "scroll", userSelect: "none", border: 1, borderRadius: 2}}>
+              {baseCommands.map((command) => {
+                return (<ProtocolOption key={command} command={command} />);
+              })}
+            </Stack>
+              
+            {/* rhs box */}
+            <Box sx={{display: 'flex', flexDirection: 'column', gap: 2}}>
+              <Stack sx={{height: "50vh", width: "30vw", overflowY: "scroll", userSelect: "none", border: 1, borderRadius: 2, mb: 2}} ref={drop}>
+                {module.length != 0
+                  ? module.map((command, i) => (
+                    <ItemTarget variant="outlined" command={command} index={i} key={`${command}-target`}>
+                      {command}
+                    </ItemTarget>
+                  ))
+                  : null}
+              </Stack>
+              <Box sx={{display: 'flex', justifyContent: 'center', gap: 2}}>
+                <Button variant='contained' onClick={handleSave} color='secondary'> Save </Button>
+                <Button variant='contained' onClick={() => { setModule([]); }} > Clear </Button>
+              </Box>
+            </Box>
+          </Box>
         </div>
+      </Slide>
         
-        <div className='protocol-module-container'>
-          <h4> Custom Protocol Module </h4>
-          <div className="protocol-module" ref={drop}>
-            {module.length != 0
-              ?
-              module.map((el, i) => (
-                <ProtocolTarget command={el} index={i} key={`tar-${el}`}/>
-              ))
-              : null}
-          </div>
-          <button className='clear' onClick={() => { setModule([])}} > Clear </button>
-        </div>
-      </div>
-    </div>
+
+    </React.Fragment>
   );
 }
-
-export default Protocol
